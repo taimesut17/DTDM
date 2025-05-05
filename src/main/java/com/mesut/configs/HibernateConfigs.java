@@ -18,6 +18,7 @@ import java.util.Properties;
 
 import static org.hibernate.cfg.JdbcSettings.DIALECT;
 import static org.hibernate.cfg.JdbcSettings.SHOW_SQL;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *
@@ -70,5 +71,10 @@ public class HibernateConfigs {
         transactionManager.setSessionFactory(
                 getSessionFactory().getObject());
         return transactionManager;
+    }
+
+    @Bean
+    public JdbcTemplate jdbcTemplate() {
+        return new JdbcTemplate(dataSource());
     }
 }

@@ -2,6 +2,7 @@ package com.mesut.controllers;
 
 import com.mesut.pojo.User;
 import com.mesut.services.UserService;
+import com.mesut.services.impl.MySqlUserServiceImpl;
 import com.mesut.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,9 @@ import java.util.Collections;
 public class AuthAPI {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private MySqlUserServiceImpl mySqlUserService;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User u) {
@@ -35,6 +39,7 @@ public class AuthAPI {
     public ResponseEntity<?> register(@RequestBody User u) {
         try {
             User createdUser = this.userService.createUser(u);
+            mySqlUserService.createRestrictedUser(u.getUsername(),u.getPassword());
             return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Lỗi khi tạo tài khoản");

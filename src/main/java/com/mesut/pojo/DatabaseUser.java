@@ -42,4 +42,40 @@ public class DatabaseUser {
     @Basic(optional = false)
     @Column(name = "name")
     private String name;
+
+    @Basic(optional = false)
+    @Column(name = "host")
+    private String host;
+
+    public String getHost() {
+        return host;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    public String getUsername_db() {
+        return username_db;
+    }
+
+    public void setUsername_db(String username_db) {
+        this.username_db = username_db;
+    }
+
+    public String getPassword_db() {
+        return password_db;
+    }
+
+    public void setPassword_db(String password_db) {
+        this.password_db = password_db;
+    }
+
+    @Basic(optional = false)
+    @Column(name = "username_db")
+    private String username_db;
+
+    @Basic(optional = false)
+    @Column(name = "password_db")
+    private String password_db;
 }

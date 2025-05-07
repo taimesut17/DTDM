@@ -2,6 +2,7 @@ package com.mesut.repositories.impl;
 
 import com.mesut.pojo.DatabaseUser;
 import com.mesut.repositories.DatabaseRepository;
+import com.mesut.utils.GenerateUtils;
 import jakarta.persistence.Query;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,14 @@ public class DatabaseRepositoryImpl implements DatabaseRepository {
     private LocalSessionFactoryBean factoryBean;
 
     @Override
-    public DatabaseUser createDatabase(DatabaseUser d) {
+    public DatabaseUser createDatabase(String username) {
         Session s = this.factoryBean.getObject().getCurrentSession();
+        DatabaseUser d = new DatabaseUser();
+        d.setUsername(username);
+        d.setName(GenerateUtils.generateRandomDatabaseName());
+        d.setUsername_db(GenerateUtils.generateRandomUsername());
+        d.setPassword_db(GenerateUtils.generateRandomPassword());
+        d.setHost("localhost");
         s.persist(d);
         return d;
     }

@@ -5,7 +5,7 @@ import com.mesut.pojo.DatabaseUser;
 import java.util.List;
 
 public interface DatabaseRepository {
-    DatabaseUser createDatabase(DatabaseUser d);
+    DatabaseUser createDatabase(String username);
     DatabaseUser getDatabaseById(int id);
     List<DatabaseUser> getDatabaseByUsername(String name);
     void deleteDatabaseByUsernameAndName(String username, String name);

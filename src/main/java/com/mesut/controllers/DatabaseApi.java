@@ -29,7 +29,7 @@ public class DatabaseApi {
     }
 
     @PostMapping("/api/databases")
-    public ResponseEntity<?> createDatabases(@RequestBody DatabaseUser dbu) throws Exception {
+    public ResponseEntity<?> createDatabases() throws Exception {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
 
@@ -37,11 +37,8 @@ public class DatabaseApi {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User is not authenticated");
         };
 
-        if(!this.databaseService.isEmptyDatabase(dbu.getUsername(), dbu.getName())){
-            return ResponseEntity.ok("username đã có database này");
-        }
 
-        DatabaseUser db = this.databaseService.createDatabase(dbu);
+        DatabaseUser db = this.databaseService.createDatabase(username);
 
         return ResponseEntity.ok(db);
     }

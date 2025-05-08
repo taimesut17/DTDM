@@ -32,7 +32,7 @@ public class DatabaseServiceImpl implements DatabaseService {
 
     public void createUserForDatabase(String username,String password, String databaseName) {
         String createUserSql = String.format(
-                "CREATE USER '%s'@'%%' IDENTIFIED BY '%s';", username, password);
+                "CREATE USER '%s'@'%%' IDENTIFIED WITH BY '%s';", username, password);
         jdbcTemplate.execute(createUserSql);
 
         String grantSql = String.format(

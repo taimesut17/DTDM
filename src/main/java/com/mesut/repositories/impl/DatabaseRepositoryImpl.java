@@ -27,7 +27,7 @@ public class DatabaseRepositoryImpl implements DatabaseRepository {
         d.setName(GenerateUtils.generateRandomDatabaseName());
         d.setUsername_db(GenerateUtils.generateRandomUsername());
         d.setPassword_db(GenerateUtils.generateRandomPassword());
-        d.setHost("localhost");
+        d.setHost("drs-db-public.cz2sq2y6646p.us-east-1.rds.amazonaws.com");
         s.persist(d);
         return d;
     }
